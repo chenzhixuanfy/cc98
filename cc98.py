@@ -66,6 +66,19 @@ class cc98:
         }
         response = requests.post(f"https://sc.ftqq.com/{SendKey}.send", data=data)
         self.write_log(f"   方糖({SendKey}): {response.text}")
+
+    # pushplus消息推送
+    def send_message_pushplus(self, token, title, content):
+        url = "http://www.pushplus.plus/send"
+        data = {
+            "token": token,
+            "title": title,
+            "content": content
+        }
+        body=json.dumps(data).encode(encoding='utf-8')
+        headers = {'Content-Type':'application/json'}
+        response = requests.post(url,data=body,headers=headers)# 可惜链接不能直接点开
+        print("pushplus: "+response.text)
     
     # 匹配各个用户给关键词并发送
     def match_and_send(self, data):
@@ -73,8 +86,9 @@ class cc98:
             for keyword in user["Keywords"]:
                 matched = re.search(keyword, data[0]["title"] + "\n" + data[0]["content"], re.IGNORECASE)# re.IGNORECASE无视大小写
                 if(matched):
-                    send_text = data[0]["title"] + "\n" + "https://www.cc98.org/topic/" + str(data[0]["topicId"])
-                    self.send_message_fangtang(user["SendKey"], "cc98", send_text)
+                    # send_text = data[0]["title"] + "\n" + "https://www.cc98.org/topic/" + str(data[0]["topicId"])
+                    # self.send_message_fangtang(user["SendKey"], "cc98", send_text)
+                    self.send_message_pushplus(user["token"], "[cc98]" + data[0]["title"], "https://www.cc98.org/topic/" + str(data[0]["topicId"]))
                     break# 避免同一个用户匹配多次关键词多次消息推送
     
     # 爬虫程序
