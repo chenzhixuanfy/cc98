@@ -3,12 +3,12 @@
         "name": "admin",
         "SendKey": "SCT229153TJ3q5SfKakwoKelVBcyMe4D86",
         "token": "10133406b7bf407089923e0010f7b273",
-        "Keywords": ["爬虫", "相机", "白嫖", "sony", "索尼", "xsh", "男生进", "女生进"]
+        "Keywords": ["爬虫|有偿|脚本", "白嫖", "相机|sony|索尼|canon|佳能|fuji|fujifilm|富士|nikon|尼康", "xsh|doi|男生进|女生进"]
     },
     {
         "name": "feifei",
         "SendKey": "SCT229875TKfnJGXqD16756IG67BykWwRF",
         "token": "",
-        "Keywords": ["mac", "macbook"]
+        "Keywords": ["mac|macbook"]
     }
 ]

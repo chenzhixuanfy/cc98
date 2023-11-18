@@ -2,7 +2,12 @@ Crawler starts...
 
 Getting authorization...
 Authorization is ready. 
-status code = 401
-Getting authorization...
-Authorization is ready. 
-{'报错类型': <class 'AttributeError'>, '报错信息': AttributeError("'NoneType' object has no attribute 'json'"), '报错文件': 'cc98.py', '报错行数': 160}
+status code = 200
+latest id: 5753982
+2023-11-18 22:24:08.339613
+status code = 200
+latest id: 5753983
+status code = 200
+心灵有的人不带性器官不会骂人是么 https://www.cc98.org/topic/5753978
+status code = 200
+感觉自己对论文的每一次修改都是屎上雕花 https://www.cc98.org/topic/5753979

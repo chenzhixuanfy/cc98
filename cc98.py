@@ -14,7 +14,7 @@ class cc98:
         self.headers = {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"
         }
-        self.auth_data = None# POST表单
+        self.settings = None# POST表单
         self.users = None# 用户
         self.latest_id = None# 最新的帖子id
         self.last_id = None# 上一次读过的帖子id
@@ -27,10 +27,10 @@ class cc98:
     # 获得Authorization，不知道client_id和client_secret多久更新一次
     def get_auth(self):
         self.write_log("Getting authorization...")
-        response_auth = requests.post(self.URL_auth, data=self.auth_data, headers=self.headers)
+        response_auth = requests.post(self.URL_auth, data=self.settings, headers=self.headers)
         if(response_auth):
-            auth_data = response_auth.json()
-            self.headers["Authorization"] = auth_data["token_type"] + " " + auth_data["access_token"]
+            settings = response_auth.json()
+            self.headers["Authorization"] = settings["token_type"] + " " + settings["access_token"]
             self.write_log("Authorization is ready. ")
         else:
             self.write_log("Fail to get! ")
@@ -138,7 +138,7 @@ class cc98:
         self.crawling()
 
         # 定时器构造函数主要有2个参数，第一个参数为时间，第二个参数为函数名
-        self.timer = threading.Timer(5*60+random_time, self.func_timer)   # 每过一段随机时间（单位：秒）调用一次函数
+        self.timer = threading.Timer(self.settings["period"]*60+random_time, self.func_timer)   # 每过一段随机时间（单位：秒）调用一次函数
 
         self.timer.start()    #启用定时器
 
@@ -148,8 +148,8 @@ class cc98:
         with open("log.txt", "w"):
             pass
         # 读取文件数据
-        with open("auth_data.json", 'r') as f:
-            self.auth_data = json.load(f)
+        with open("settings.json", 'r') as f:
+            self.settings = json.load(f)
         with open("user.json", 'r', encoding="utf-8") as f:
             self.users = json.load(f)
         
